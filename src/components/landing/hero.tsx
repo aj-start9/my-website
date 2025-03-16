@@ -4,8 +4,31 @@ import { motion } from "framer-motion";
 import { Code, Smartphone, Server, BadgeCheck, Brain, Cpu } from "lucide-react"; // Lucide icons
 import FormModal from "../FormModal";
 import { useState } from "react";
+import TypingEffect from "../common/typing-effect";
 
-export default function HeroSection() {
+
+const techStack = [
+    { name: "React", icon: <Code className="text-gray-600 text-lg" /> },
+    { name: "Next.js", icon: <Code className="text-gray-600 text-lg" /> },
+    { name: "Tailwind CSS", icon: <Code className="text-gray-600 text-lg" /> },
+    { name: "TypeScript", icon: <Code className="text-gray-600 text-lg" /> },
+    { name: "Node.js", icon: <Server className="text-gray-600 text-lg" /> },
+    { name: "Express.js", icon: <Server className="text-gray-600 text-lg" /> },
+    { name: "MongoDB", icon: <Server className="text-gray-600 text-lg" /> },
+    { name: "Firebase", icon: <Server className="text-gray-600 text-lg" /> },
+    { name: "Clerk", icon: <Server className="text-gray-600 text-lg" /> },
+    { name: "Framer Motion", icon: <Server className="text-gray-600 text-lg" /> },
+    { name: "ShadCN", icon: <Server className="text-gray-600 text-lg" /> },
+    { name: "React Native", icon: <Smartphone className="text-gray-600 text-lg" /> },
+    { name: "Expo", icon: <Smartphone className="text-gray-600 text-lg" /> },
+    { name: "AI Integration", icon: <Brain className="text-gray-600 text-lg" /> },
+];
+
+export default function HeroSection({
+    scrollPosition
+}: {
+    scrollPosition: number
+}) {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const scrollToSection = (id: string) => {
@@ -14,28 +37,41 @@ export default function HeroSection() {
             section.scrollIntoView({ behavior: "smooth" });
         }
     };
-
+    console.log('scrollPosition', scrollPosition)
     return (
         <div className="bg-gray-100 text-gray-900 min-h-screen">
             {/* Navbar */}
-            <nav className="flex justify-between items-center px-6 py-4 bg-white">
+            <nav className={`flex justify-between items-center px-6 py-4 bg-white ${scrollPosition > 300 ? 'fixed top-0 left-[50%] -translate-x-[50%] z-10 shadow-md rounded-md' : ''}`}>
                 <div className="text-xl font-semibold"></div>
                 <ul className="hidden md:flex space-x-6 text-gray-600">
                     <li className="hover:text-gray-900 cursor-pointer" onClick={() => { scrollToSection('home') }}>Home</li>
                     <li className="hover:text-gray-900 cursor-pointer" onClick={() => { scrollToSection('projects') }}>Projects</li>
                     <li className="hover:text-gray-900 cursor-pointer" onClick={() => { scrollToSection('testimonials') }}>Testimonials</li>
                 </ul>
-                <button className="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-700">
-                    Hire Me
-                </button>
+                {
+                    scrollPosition < 300 ?
+                        <button className="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                            Hire Me
+                        </button> : null}
             </nav>
 
             {/* Hero Section */}
             <header className="text-center mt-10 px-4" id="home">
-                <div className="w-20 h-20 mx-auto rounded-full bg-gray-300"></div>
+                <motion.div
+                    initial={{ opacity: 1, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                    }}
+                    className="w-20 h-20 mx-auto rounded-full bg-gray-300"></motion.div>
                 <p className="mt-2 text-gray-600">Available for Freelance Work</p>
-                <h1 className="text-3xl md:text-4xl font-bold mt-4">
-                    Expert in <span className="text-yellow-500">Frontend, Node.js, React Native & AI Integration</span>
+                <h1 className="text-3xl md:text-4xl font-bold mt-4 flex justify-center items-center">
+                    Expert in <span className="text-yellow-500">
+                        <TypingEffect text="Frontend, Node.js, React Native & AI Integration" />
+                    </span>
                 </h1>
                 <p className="mt-4 text-gray-600 max-w-lg mx-auto">
                     I build fast, scalable web and mobile applications using modern frontend technologies, robust backend solutions with Node.js, React Native for mobile apps, and AI-powered integrations.
@@ -51,78 +87,30 @@ export default function HeroSection() {
 
                 <motion.div
                     className="flex flex-wrap justify-center gap-4 mt-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={{
+                        visible: {
+                            transition: { staggerChildren: 0.1 },
+                        },
+                    }}
                 >
-                    {/* React */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Code className="text-gray-600 text-lg" /> React
-                    </span>
-
-                    {/* Next.js */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Code className="text-gray-600 text-lg" /> Next.js
-                    </span>
-
-                    {/* Tailwind CSS */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Code className="text-gray-600 text-lg" /> Tailwind CSS
-                    </span>
-
-                    {/* TypeScript */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Code className="text-gray-600 text-lg" /> TypeScript
-                    </span>
-
-                    {/* Node.js */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Server className="text-gray-600 text-lg" /> Node.js
-                    </span>
-
-                    {/* Express.js */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Server className="text-gray-600 text-lg" /> Express.js
-                    </span>
-
-                    {/* MongoDB */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Server className="text-gray-600 text-lg" /> MongoDB
-                    </span>
-
-                    {/* Firebase */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Server className="text-gray-600 text-lg" /> Firebase
-                    </span>
-
-                    {/* Clerk */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Server className="text-gray-600 text-lg" /> Clerk
-                    </span>
-
-                    {/* Framer Motion */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Server className="text-gray-600 text-lg" /> Framer Motion
-                    </span>
-
-                    {/* ShadCN */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Server className="text-gray-600 text-lg" /> ShadCN
-                    </span>
-
-                    {/* React Native */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Smartphone className="text-gray-600 text-lg" /> React Native
-                    </span>
-
-                    {/* Expo */}
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Smartphone className="text-gray-600 text-lg" /> Expo
-                    </span>
-
-                    <span className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md">
-                        <Brain className="text-gray-600 text-lg" /> AI Integration
-                    </span>
+                    {techStack.map((tech, index) => (
+                        <motion.span
+                            key={index}
+                            className="flex items-center gap-2 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg shadow-md bg-white"
+                            variants={{
+                                hidden: { opacity: 0, scale: 0.8, y: 20 },
+                                visible: { opacity: 1, scale: 1, y: 0 },
+                            }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                            whileHover={{ scale: 1.1, y: -5 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            {tech.icon} {tech.name}
+                        </motion.span>
+                    ))}
                 </motion.div>
             </section>
 
@@ -206,7 +194,11 @@ export default function HeroSection() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
                     {/* Frontend Development */}
-                    <div className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105">
+                    <motion.div
+                        initial={{ opacity: 0, x: '-100%' }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, smooth: 'easeInOut' }}
+                        className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105">
                         <Code className="text-blue-600 text-6xl mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-gray-900">Frontend Development</h3>
                         <p className="text-gray-600 mt-2">
@@ -217,10 +209,15 @@ export default function HeroSection() {
                             <li>SEO-friendly static & dynamic pages</li>
                             <li>Performance optimization</li>
                         </ul>
-                    </div>
+                    </motion.div>
 
                     {/* Backend Development */}
-                    <div className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105">
+                    <motion.div
+                        initial={{ opacity: 0, x: '-100%' }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, smooth: 'easeInOut' }}
+
+                        className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105">
                         <Server className="text-green-600 text-6xl mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-gray-900">Backend & API Development</h3>
                         <p className="text-gray-600 mt-2">
@@ -231,10 +228,15 @@ export default function HeroSection() {
                             <li>Authentication & authorization (JWT, Clerk)</li>
                             <li>Database modeling & optimization</li>
                         </ul>
-                    </div>
+                    </motion.div>
 
                     {/* Mobile Development */}
-                    <div className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105">
+                    <motion.div
+                        initial={{ opacity: 0, x: '+100%' }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, smooth: 'easeInOut' }}
+
+                        className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105">
                         <Smartphone className="text-yellow-600 text-6xl mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-gray-900">Mobile App Development</h3>
                         <p className="text-gray-600 mt-2">
@@ -245,10 +247,14 @@ export default function HeroSection() {
                             <li>Native API integrations</li>
                             <li>App store deployment (iOS & Android)</li>
                         </ul>
-                    </div>
+                    </motion.div>
 
                     {/* AI Integration */}
-                    <div className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105">
+                    <motion.div
+                        initial={{ opacity: 0, x: '+100%' }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, smooth: 'easeInOut' }}
+                        className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105">
                         <Cpu className="text-purple-600 text-6xl mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-gray-900">AI Integration</h3>
                         <p className="text-gray-600 mt-2">
@@ -259,7 +265,7 @@ export default function HeroSection() {
                             <li>Machine learning model integration</li>
                             <li>Predictive analytics & automation</li>
                         </ul>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 

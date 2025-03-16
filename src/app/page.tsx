@@ -6,10 +6,11 @@ import RecentProjects from "@/components/landing/projects";
 import { useState } from "react";
 
 export default function Home() {
-  
+  const [scroll, setScroll] = useState(0);
+
   return (
-    <div onScroll={(e) => console.log("scrolling", e)}>
-      <HeroSection />
+    <div className="h-screen overflow-y-auto" onScroll={(e) => setScroll(e.currentTarget.scrollTop)}>
+      <HeroSection scrollPosition={scroll} />
       <RecentProjects />
       <AboutSection />
     </div>
