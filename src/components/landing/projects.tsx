@@ -39,7 +39,7 @@ const projects = [
     icon: <Server className="text-green-500 text-4xl" />,
   },
   {
-    title: "Freedom App (Mobile App)",
+    title: "One Percent Club (Mobile App)",
     description: "A React Native app available on Google Play Store.",
     techStack: ["React Native", "Expo", "Firebase"],
     link: "https://play.google.com/store/apps/details?id=com.freedom.android&hl=en_IN",
