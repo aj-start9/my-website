@@ -37,16 +37,15 @@ export default function HeroSection({
             section.scrollIntoView({ behavior: "smooth" });
         }
     };
-    console.log('scrollPosition', scrollPosition)
+
     return (
         <div className="bg-gray-100 text-gray-900 min-h-screen">
             {/* Navbar */}
-            <nav className={`flex justify-between items-center px-6 py-4 bg-white ${scrollPosition > 300 ? 'fixed top-0 left-[50%] -translate-x-[50%] z-10 shadow-md rounded-md' : ''}`}>
+            <nav className={`flex justify-between items-center px-6 py-4 bg-white ${scrollPosition > 300 ? 'fixed top-0 left-[50%] -translate-x-[50%] z-10 shadow-md rounded-md' : 'ml-20'}`}>
                 <div className="text-xl font-semibold"></div>
-                <ul className="hidden md:flex space-x-6 text-gray-600">
+                <ul className="hidden md:flex space-x-6 text-gray-600 w-min">
                     <li className="hover:text-gray-900 cursor-pointer" onClick={() => { scrollToSection('home') }}>Home</li>
                     <li className="hover:text-gray-900 cursor-pointer" onClick={() => { scrollToSection('projects') }}>Projects</li>
-                    <li className="hover:text-gray-900 cursor-pointer" onClick={() => { scrollToSection('testimonials') }}>Testimonials</li>
                 </ul>
                 {
                     scrollPosition < 300 ?
@@ -54,32 +53,28 @@ export default function HeroSection({
                             Hire Me
                         </button> : null}
             </nav>
-
             {/* Hero Section */}
             <header className="text-center mt-10 px-4" id="home">
-                <motion.div
-                    initial={{ opacity: 1, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                        ease: "easeInOut",
-                    }}
-                    className="w-20 h-20 mx-auto rounded-full bg-gray-300"></motion.div>
+                <h2 className="text-2xl font-semibold text-gray-800">Ankit Jain</h2>
+
                 <p className="mt-2 text-gray-600">Available for Freelance Work</p>
-                <h1 className="text-3xl md:text-4xl font-bold mt-4 flex justify-center items-center">
-                    Expert in <span className="text-yellow-500">
+
+                <h1 className="text-3xl md:text-4xl font-bold mt-4 flex flex-col md:flex-row justify-center items-center">
+                    Expert in
+                    <span className="text-yellow-500">
                         <TypingEffect text="Frontend, Node.js, React Native & AI Integration" />
                     </span>
                 </h1>
+
                 <p className="mt-4 text-gray-600 max-w-lg mx-auto">
                     I build fast, scalable web and mobile applications using modern frontend technologies, robust backend solutions with Node.js, React Native for mobile apps, and AI-powered integrations.
                 </p>
+
                 <button className="mt-6 bg-gray-900 text-white px-6 py-3 rounded-md hover:bg-gray-700" onClick={() => setIsModalOpen(true)}>
                     Get in Touch
                 </button>
             </header>
+
 
             {/* Tech Stack Section */}
             <section className="mt-12 px-4 text-center">

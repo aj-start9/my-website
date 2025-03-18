@@ -4,24 +4,45 @@ import { Code, ExternalLink, Smartphone, Server } from "lucide-react";
 
 const projects = [
   {
-    title: "Task Management App",
-    description: "A full-stack task management application with real-time collaboration.",
-    techStack: ["React", "Next.js", "Node.js", "MongoDB", "Tailwind CSS"],
-    link: "#",
+    title: "Marmin",
+    description: "AI-powered application built with Next.js.",
+    techStack: ["Next.js", "AI", "Tailwind CSS"],
+    link: "https://app.marmin.ai/login",
     icon: <Code className="text-blue-500 text-4xl" />,
   },
   {
-    title: "E-Commerce Platform",
-    description: "A scalable e-commerce platform with secure payments and product management.",
-    techStack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Stripe"],
-    link: "#",
+    title: "Dotpe",
+    description: "Barista store platform for seamless ordering.",
+    techStack: ["Next.js", "Commerce", "Tailwind CSS"],
+    link: "https://barista.dotpe.in/order",
     icon: <Server className="text-green-500 text-4xl" />,
   },
   {
-    title: "Mobile Expense Tracker",
-    description: "A React Native mobile app for tracking expenses with Firebase authentication.",
-    techStack: ["React Native", "Expo", "Firebase", "Tailwind CSS"],
-    link: "#",
+    title: "PayU",
+    description: "Secure and scalable online payments platform.",
+    techStack: ["Next.js", "Payments", "Node.js"],
+    link: "https://payu.in/",
+    icon: <Server className="text-green-500 text-4xl" />,
+  },
+  {
+    title: "OpenMic",
+    description: "AI-powered music collaboration platform.",
+    techStack: ["Next.js", "AI", "Music"],
+    link: "https://www.openmic.ai/",
+    icon: <Code className="text-blue-500 text-4xl" />,
+  },
+  {
+    title: "One Percent Club (Web App)",
+    description: "Exclusive community-driven platform.",
+    techStack: ["Next.js", "Community", "Tailwind CSS"],
+    link: "https://onepercentclub.io/",
+    icon: <Server className="text-green-500 text-4xl" />,
+  },
+  {
+    title: "Freedom App (Mobile App)",
+    description: "A React Native app available on Google Play Store.",
+    techStack: ["React Native", "Expo", "Firebase"],
+    link: "https://play.google.com/store/apps/details?id=com.freedom.android&hl=en_IN",
     icon: <Smartphone className="text-yellow-500 text-4xl" />,
   },
 ];
@@ -55,7 +76,7 @@ export default function RecentProjects() {
                 </span>
               ))}
             </div>
-            <a href={project.link} className="mt-4 inline-block text-yellow-500 hover:text-yellow-600 font-semibold flex items-center gap-2">
+            <a href={project.link} className="mt-4 inline-block text-yellow-500 hover:text-yellow-600 font-semibold flex items-center gap-2" target="_blank" rel="noopener noreferrer">
               View Project <ExternalLink className="w-4 h-4" />
             </a>
           </div>
