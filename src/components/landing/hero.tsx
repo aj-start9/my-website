@@ -24,6 +24,28 @@ const techStack = [
     { name: "AI Integration", icon: <Brain className="text-gray-600 text-lg" /> },
 ];
 
+
+const container = {
+    hidden: {},
+    show: {
+        transition: {
+            staggerChildren: 0.2,
+        },
+    },
+};
+
+const card = {
+    hidden: { opacity: 0, y: 40 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5,
+            ease: 'easeOut',
+        },
+    },
+};
+
 export default function HeroSection({
     scrollPosition
 }: {
@@ -84,7 +106,7 @@ export default function HeroSection({
                     className="flex flex-wrap justify-center gap-4 mt-6"
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     variants={{
                         visible: {
                             transition: { staggerChildren: 0.1 },
@@ -102,6 +124,9 @@ export default function HeroSection({
                             transition={{ duration: 0.5, ease: "easeOut" }}
                             whileHover={{ scale: 1.1, y: -5 }}
                             whileTap={{ scale: 0.95 }}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: false }}
                         >
                             {tech.icon} {tech.name}
                         </motion.span>
@@ -187,13 +212,18 @@ export default function HeroSection({
                     Whether it's a sleek frontend, a robust backend, a feature-rich mobile app, or AI-powered solutions, I ensure seamless execution.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+                <motion.div
+                    variants={container}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.2 }}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12"
+                >
                     {/* Frontend Development */}
                     <motion.div
-                        initial={{ opacity: 0, x: '-100%' }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, smooth: 'easeInOut' }}
-                        className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105">
+                        variants={card}
+                        className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105"
+                    >
                         <Code className="text-blue-600 text-6xl mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-gray-900">Frontend Development</h3>
                         <p className="text-gray-600 mt-2">
@@ -208,11 +238,9 @@ export default function HeroSection({
 
                     {/* Backend Development */}
                     <motion.div
-                        initial={{ opacity: 0, x: '-100%' }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, smooth: 'easeInOut' }}
-
-                        className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105">
+                        variants={card}
+                        className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105"
+                    >
                         <Server className="text-green-600 text-6xl mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-gray-900">Backend & API Development</h3>
                         <p className="text-gray-600 mt-2">
@@ -227,11 +255,9 @@ export default function HeroSection({
 
                     {/* Mobile Development */}
                     <motion.div
-                        initial={{ opacity: 0, x: '+100%' }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, smooth: 'easeInOut' }}
-
-                        className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105">
+                        variants={card}
+                        className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105"
+                    >
                         <Smartphone className="text-yellow-600 text-6xl mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-gray-900">Mobile App Development</h3>
                         <p className="text-gray-600 mt-2">
@@ -246,10 +272,9 @@ export default function HeroSection({
 
                     {/* AI Integration */}
                     <motion.div
-                        initial={{ opacity: 0, x: '+100%' }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, smooth: 'easeInOut' }}
-                        className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105">
+                        variants={card}
+                        className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 transform transition duration-300 hover:scale-105"
+                    >
                         <Cpu className="text-purple-600 text-6xl mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-gray-900">AI Integration</h3>
                         <p className="text-gray-600 mt-2">
@@ -261,7 +286,7 @@ export default function HeroSection({
                             <li>Predictive analytics & automation</li>
                         </ul>
                     </motion.div>
-                </div>
+                </motion.div>
             </section>
 
             <FormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
