@@ -63,15 +63,14 @@ export default function HeroSection({
     return (
         <div className="bg-gray-100 text-gray-900 min-h-screen">
             {/* Navbar */}
-            <nav className={`flex justify-between items-center px-6 py-4 bg-white ${scrollPosition > 300 ? 'fixed top-0 left-[50%] -translate-x-[50%] z-10 shadow-md rounded-md' : 'ml-20'}`}>
-                <div className="text-xl font-semibold"></div>
-                <ul className="hidden md:flex space-x-6 text-gray-600 w-min">
-                    <li className="hover:text-gray-900 cursor-pointer" onClick={() => { scrollToSection('home') }}>Home</li>
+            <nav className={`flex justify-between items-center px-6 py-4 bg-white ${scrollPosition > 300 ? 'fixed top-0 left-[50%] -translate-x-[50%] z-10 shadow-md rounded-md' : ''}`}>
+                {/* <ul className="hidden md:flex space-x-6 text-gray-600 w-min max-md:invisible">
+                    <li className="hover:tepackxt-gray-900 cursor-pointer" onClick={() => { scrollToSection('home') }}>Home</li>
                     <li className="hover:text-gray-900 cursor-pointer" onClick={() => { scrollToSection('projects') }}>Projects</li>
-                </ul>
+                </ul> */}
                 {
-                    scrollPosition < 300 ?
-                        <button className="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                    scrollPosition < 30000 ?
+                        <button className="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-700 mx-auto">
                             Hire Me
                         </button> : null}
             </nav>
